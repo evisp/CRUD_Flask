@@ -1,20 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for
-from models.film_model import db, Film
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@zerotoone:3306/sakila'
-db.init_app(app)
 
-@app.route('/')
-def index():
-    films = Film.query.all()
-    return render_template('index.html', films=films)
+# Configure MySQL connection URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/sakila'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable Flask-SQLAlchemy modification tracking
 
-# Route to display details of a single film
-@app.route('/film/<int:film_id>')
-def film_detail(film_id):
-    film = Film.query.get(film_id)
-    return render_template('film_detail.html', film=film)
+# Initialize SQLAlchemy instance
+db = SQLAlchemy(app)
+
+# Define the Actor model
+class Actor(db.Model):
+    __tablename__ = 'actor'
+
+    actor_id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(45), nullable=False)
+    last_name = db.Column(db.String(45), nullable=False)
+
+# Route to display all actors
+@app.route('/actors')
+def show_actors():
+    # Query all actors from the 'actor' table
+    actors = Actor.query.all()
+
+    # Render the template with actor information
+    return render_template('actors.html', actors=actors)
 
 if __name__ == '__main__':
     app.run(debug=True)

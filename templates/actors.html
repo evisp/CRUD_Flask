@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Films List</title>
+    <title>Actor List</title>
 </head>
 <body>
-    <h1>Films List</h1>
+    <h1>Actor List</h1>
     <ul>
-        {% for film in films %}
-            <li><a href="{{ url_for('film_detail', film_id=film.film_id) }}">{{ film.title }}</a></li>
+        {% for actor in actors %}
+            <li>{{ actor.first_name }} {{ actor.last_name }}</li>
         {% endfor %}
     </ul>
 </body>
