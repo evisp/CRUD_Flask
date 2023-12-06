@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask CRUD App</title>
+    <title>Films List</title>
 </head>
 <body>
-    <h1>Hello, Flask CRUD App!</h1>
+    <h1>Films List</h1>
+    <ul>
+        {% for film in films %}
+            <li><a href="{{ url_for('film_detail', film_id=film.film_id) }}">{{ film.title }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

@@ -6,6 +6,10 @@
 ```bash
 sudo apt update
 sudo apt install mysql-server
+
+sudo apt-get install default-libmysqlclient-dev
+sudo apt-get install python3-dev
+pip install mysqlclient
 ```
 
 ###  Install MySQL Workbench 
@@ -102,6 +106,38 @@ Create a folder named `templates` in your project directory. Inside this folder,
 ```
 
 ### Run Your Flask App
+
+```python
+python app.py
+```
+
+## Install Flask-SQLAlchemy and Install SQLAlchemy:
+
+```bash
+pip install Flask-SQLAlchemy
+pip install SQLAlchemy
+```
+
+### Install Flask-Migrate (for database migrations):
+
+```bash
+pip install Flask-Migrate
+```
+
+
+## Run Migrations
+
+These commands will set up the migrations directory and apply the initial migration to create the `film`` table in the Sakila database.
+
+
+```python
+python manage.py db init
+python manage.py db migrate -m "Initial migration"
+python manage.py db upgrade
+
+```
+
+After the migrations, run the Flask application:
 
 ```python
 python app.py
