@@ -27,9 +27,9 @@ and *url* can be bound to a certain functionality
 
 - **Jinja2 (templating engine)** helps us create dynamic web pages. It allows us to mix our Python code with our HTML pages, so we can show different content based on what a user does 
 
-##  Install Required Software
+##  How to Get Started? Install the Required Software
 
-## Install VSCode and Unix-like Command Line
+### Install VSCode and Unix-like Command Line
 
 First off, install (or make sure you have installed) [VS Code](https://code.visualstudio.com/). To be able to easily install the required packages in unix-like style, you may want to install as terminal on your VS code
 WSL (Windows Subsystem for Linux). To do so, visit [this page](https://learn.microsoft.com/en-us/windows/wsl/install) and follow the instructions provided there.
