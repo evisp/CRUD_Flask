@@ -1,3 +1,31 @@
+# READ ME - I know you do
+
+This project is a simple web application that showcases several key concepts discussed
+at the `Foundations` program at Holberton School. This application gets its data from (a lightversion)
+of the [Sakila Sample Database](https://dev.mysql.com/doc/sakila/en/) providing hundreeds of
+records of exploring movies and actors, among others. Built using Flask, a lightweight and efficient web framework, and SQLAlchemy, a SQL toolkit for Python, the application demonstrates several functionalities such as
+
+### Key functionalities
+
+* **Trending Movies**: A (random) list of movies is dynamically shown on each visit of the page
+
+* **Search Movies**: A simple search functionality retreives the movies from the database and displays them in a grid like manner 
+
+* Similar operations can be developed for other key entities such as actors. 
+
+### Key technologies
+- **Flask** as a web framework which provides tools, libraries, and patterns needed to create *routes* so that
+and *url* can be bound to a certain functionality 
+
+- **SQLAlchemy** as a translator between Python code and our MySQL database, so we can store and retreive data
+    using Python code instead of SQL queries 
+
+- **MySQL** as a database management system to store and organize information. Our *Sakila* database is created 
+    and populated using SQL queries
+
+- **HTML/CSS** for creating the structure and design of our website.
+
+- **Jinja2 (templating engine)** helps us create dynamic web pages. It allows us to mix our Python code with our HTML pages, so we can show different content based on what a user does 
 
 ##  Install Required Software
 
