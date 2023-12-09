@@ -11,6 +11,30 @@
         <h1>Sakila Database Showcase</h1>
     </header>
     <main>
+
+        <section id="search-movies">
+            <h2>Search Movies</h2>
+            <form action="{{ url_for('index') }}" method="POST">
+                <label for="search_term">Search for a movie:</label>
+                <input type="text" id="search_term" name="search_term" required>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section id="search-results">
+            <div class="grid-container">
+                {% for film in search_results %}
+                    <div class="grid-item">
+                        <div class="grid-content">
+                            <img src="{{ film.image_url }}" alt="{{ film.title }}">
+                            <p>{{ film.title }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        
         <section id="trending-movies">
             <h2>Trending Movies</h2>
             <div class="grid-container">
@@ -24,19 +48,7 @@
                 {% endfor %}
             </div>
         </section>
-        
 
-        <section id="trending-actors">
-            <h2>Trending Actors</h2>
-            <div class="grid-container">
-                {% for actor in trending_actors %}
-                    <div class="grid-item">
-                        <img src="https://via.placeholder.com/200x300" alt="{{ actor.first_name }} {{ actor.last_name }}">
-                        <p>{{ actor.first_name }} {{ actor.last_name }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
     </main>
     <footer>
         &copy; 2023 Sakila Showcase
