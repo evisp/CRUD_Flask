@@ -24,7 +24,7 @@ def index():
 """
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    trending_movies = Film.query.limit(10).all()
+    trending_movies = Film.query.order_by(func.rand()).limit(10).all()
     search_term = ""  
 
     if request.method == 'POST':
@@ -57,6 +57,7 @@ def movies():
 def film_detail(film_id):
     film = Film.query.get(film_id)
     return render_template('film_detail.html', film=film)
+    
 
 @app.route('/actors')
 def show_actors():

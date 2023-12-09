@@ -32,8 +32,12 @@
                             <div class="grid-content">
                                 <img src="{{ film.image_url }}" alt="{{ film.title }}">
                                 <p>{{ film.title }}</p>
+                                <div class="tooltip">
+                                    <p class="description">{{ film.description }}</p>
+                                </div>
                             </div>
                         </div>
+                        
                     {% endfor %}
                 </div>
             {% endif %}

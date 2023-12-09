@@ -75,6 +75,30 @@ h2 {
     margin: 0;
 }
 
+.grid-item {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 50%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #292728;
+    color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.grid-item:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 #search-movies {
     margin-bottom: 2em;
     text-align: center;
