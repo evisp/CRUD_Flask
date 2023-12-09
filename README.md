@@ -29,7 +29,16 @@ and *url* can be bound to a certain functionality
 
 ##  Install Required Software
 
-###  Install MySQL Server:
+## Install VSCode and Unix-like Command Line
+
+First off, install (or make sure you have installed) [VS Code](https://code.visualstudio.com/). To be able to easily install the required packages in unix-like style, you may want to install as terminal on your VS code
+WSL (Windows Subsystem for Linux). To do so, visit [this page](https://learn.microsoft.com/en-us/windows/wsl/install) and follow the instructions provided there.
+
+###  Install MySQL Server 
+
+MySQL server is crucial for our application as it serves as the backend database management system. It stores and retrieves data, providing a structured way for data management. 
+
+Use the commands below to install it and make sure everything is up to date with your Python environment as well. 
 
 ```bash
 sudo apt update
@@ -42,23 +51,38 @@ pip install mysqlclient
 
 ###  Install MySQL Workbench 
 
-This step is optional, but recommended for database management.
+This step is optional. 
 You can download and install MySQL Workbench following [this](https://dev.mysql.com/downloads/file/?id=519997) link
 
-### Install Python and Flask
+### Install Flask
 
-```
+
+Flask is essential for our application as it acts as the web framework. 
+It enables us to create dynamic and responsive web pages, handle user requests, and integrate with the backend database. 
+
+```bash
 sudo apt install python3 python3-pip
 pip3 install Flask
+pip install Flask-MySQL
 ```
 
-## Start MySQL Server
+
+### Install Flask-SQLAlchemy and Install SQLAlchemy:
+
+```bash
+pip install Flask-SQLAlchemy
+pip install SQLAlchemy
+```
+
+## Build and Set Up MySQL Server
+
+### Start MySQL Server
 
 ```bash
 sudo service mysql start
 ```
 
-## Access MySQL and Create Database
+### Access MySQL and Create Database
 
 ```bash
 mysql -u root -p
@@ -70,7 +94,7 @@ CREATE DATABASE sakila;
 USE sakila;
 ```
 
-## Download and Import Sakila Database
+### Download and Import Sakila Database
 
 Download and Import Sakila Sample Database
 Visit the MySQL documentation to download the Sakila sample database: MySQL :: [Sakila Sample Database](https://dev.mysql.com/doc/sakila/en/)
@@ -82,13 +106,14 @@ mysql -u root -p sakila < path/to/sakila-schema.sql
 mysql -u root -p sakila < path/to/sakila-data.sql
 ```
 
-## Create Flask Application
+Alternatively, you can use a simpler version, by creating just the tables
 
-### Install Flask-MySQL
+* [SQL Query to Create Table Actor](https://github.com/evisp/CRUD_Flask/blob/main/sakila-db/insert_actor.sql)
+* [SQL Query to Create Table Film](https://github.com/evisp/CRUD_Flask/blob/main/sakila-db/insert_film.sql)
+* [SQL Query to Create Table Film_Actor](https://github.com/evisp/CRUD_Flask/blob/main/sakila-db/insert_actor_film.sql)
+* [SQL Query to Update Film to include an image url](https://github.com/evisp/CRUD_Flask/blob/main/sakila-db/update_url.sql)
 
-```bash
-pip install Flask-MySQL
-```
+## Create Simple (Hello World) Flask Application
 
 ### Create a new directory for your project and navigate into it:
 
@@ -134,38 +159,6 @@ Create a folder named `templates` in your project directory. Inside this folder,
 ```
 
 ### Run Your Flask App
-
-```python
-python app.py
-```
-
-## Install Flask-SQLAlchemy and Install SQLAlchemy:
-
-```bash
-pip install Flask-SQLAlchemy
-pip install SQLAlchemy
-```
-
-### Install Flask-Migrate (for database migrations):
-
-```bash
-pip install Flask-Migrate
-```
-
-
-## Run Migrations
-
-These commands will set up the migrations directory and apply the initial migration to create the `film`` table in the Sakila database.
-
-
-```python
-python manage.py db init
-python manage.py db migrate -m "Initial migration"
-python manage.py db upgrade
-
-```
-
-After the migrations, run the Flask application:
 
 ```python
 python app.py
