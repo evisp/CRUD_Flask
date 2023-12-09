@@ -2,9 +2,11 @@ from flask import Flask, render_template, request
 from models import db
 from models.film_model import Film
 from models.actor_model import Actor
+from sqlalchemy.sql.expression import func
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/sakila'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/sakila_lightweight'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy instance
@@ -17,7 +19,10 @@ from models.actor_model import Actor
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    trending_movies = Film.query.order_by(func.rand()).limit(10).all()    
+    return render_template('index.html', trending_movies=trending_movies)
+
+
 
 @app.route('/movies', methods=['GET', 'POST'])
 def movies():
@@ -28,6 +33,7 @@ def movies():
         films = Film.query.all()
 
     return render_template('movies.html', films=films)
+
 
 @app.route('/film/<int:film_id>')
 def film_detail(film_id):

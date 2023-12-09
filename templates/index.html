@@ -14,10 +14,12 @@
         <section id="trending-movies">
             <h2>Trending Movies</h2>
             <div class="grid-container">
-                {% for _ in range(5) %}
+                {% for film in trending_movies %}
                     <div class="grid-item">
-                        <img src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" alt="Movie Image">
-                        <p>Movie Title</p>
+                        <div class="grid-content">
+                            <img src="{{ film.image_url }}" alt="{{ film.title }}">
+                            <p>{{ film.title }}</p>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
@@ -29,7 +31,7 @@
             <div class="grid-container">
                 {% for actor in trending_actors %}
                     <div class="grid-item">
-                        <img src="{{ actor.image_path }}" alt="{{ actor.first_name }} {{ actor.last_name }}">
+                        <img src="https://via.placeholder.com/200x300" alt="{{ actor.first_name }} {{ actor.last_name }}">
                         <p>{{ actor.first_name }} {{ actor.last_name }}</p>
                     </div>
                 {% endfor %}
