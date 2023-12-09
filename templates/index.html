@@ -4,39 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Sakila Database Showcase</title>
+    <title> Popcorn Flicks Showcase  </title>
 </head>
 <body>
     <header>
-        <h1>Sakila Database Showcase</h1>
+        <div class="header-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/header/logo.png') }}" alt="Logo">
+                <h1> Popcorn Flicks Showcase </h1>
+            </div>
+            <!-- Add other header elements as needed -->
+        </div>
     </header>
     <main>
 
         <section id="search-movies">
-            <h2>Search Movies</h2>
-            <form action="{{ url_for('index') }}" method="POST">
-                <label for="search_term">Search for a movie:</label>
-                <input type="text" id="search_term" name="search_term" required>
+            <h2>Find Your Mov<span style="color: #c0c0be;">i</span>e</h2>
+            <form method="post">
+                <input type="text" name="search_term" placeholder="Search for movies...">
                 <button type="submit">Search</button>
             </form>
-        </section>
-
-        <section id="search-results">
-            <div class="grid-container">
-                {% for film in search_results %}
-                    <div class="grid-item">
-                        <div class="grid-content">
-                            <img src="{{ film.image_url }}" alt="{{ film.title }}">
-                            <p>{{ film.title }}</p>
+            {% if search_results %}
+                <h3>Search Results for "{{ search_term }}"</h3>
+                <div class="grid-container">
+                    {% for film in search_results %}
+                        <div class="grid-item">
+                            <div class="grid-content">
+                                <img src="{{ film.image_url }}" alt="{{ film.title }}">
+                                <p>{{ film.title }}</p>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </section>
+    
 
         
         <section id="trending-movies">
-            <h2>Trending Movies</h2>
+            <h2>See What's Trending (Movies You Can Pretend to Have Watched)</h2>
             <div class="grid-container">
                 {% for film in trending_movies %}
                     <div class="grid-item">
@@ -51,7 +57,7 @@
 
     </main>
     <footer>
-        &copy; 2023 Sakila Showcase
+        &copy; At Holberton School, we are copyleft &copy;
     </footer>
 </body>
 </html>

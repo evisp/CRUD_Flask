@@ -25,12 +25,12 @@ def index():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     trending_movies = Film.query.limit(10).all()
-    search_term = ""  # Default value for search_term
+    search_term = ""  
 
     if request.method == 'POST':
         search_term = request.form.get('search_term', '')
         # Query films that contain the search term in the title
-        search_results = Film.query.filter(Film.title.ilike(f"%{search_term}%")).all()
+        search_results = Film.query.filter(Film.title.ilike(f"%{search_term}%")).limit(5).all()
     else:
         search_results = []
 
@@ -39,9 +39,6 @@ def index():
 @app.route('/search_movies', methods=['POST'])
 def search_movies():
     search_term = request.form.get('search_term', '')
-    # Perform a search query based on the search_term
-    # You can use Film.query.filter(Film.title.ilike(f"%{search_term}%")).all()
-    # Update the variable 'search_results' accordingly
     search_results = [...]  # Replace with your actual search query
     return render_template('search_results.html', search_results=search_results)
 
