@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Sakila Database Showcase</title>
+</head>
+<body>
+    <header>
+        <h1>Sakila Database Showcase</h1>
+    </header>
+    <main>
+        <section id="trending-movies">
+            <h2>Trending Movies</h2>
+            <div class="grid-container">
+                {% for _ in range(5) %}
+                    <div class="grid-item">
+                        <img src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" alt="Movie Image">
+                        <p>Movie Title</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+
+        <section id="trending-actors">
+            <h2>Trending Actors</h2>
+            <div class="grid-container">
+                {% for actor in trending_actors %}
+                    <div class="grid-item">
+                        <img src="{{ actor.image_path }}" alt="{{ actor.first_name }} {{ actor.last_name }}">
+                        <p>{{ actor.first_name }} {{ actor.last_name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2023 Sakila Showcase
+    </footer>
+</body>
+</html>
